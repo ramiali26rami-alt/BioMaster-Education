@@ -1,14 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
+import { QuizPage } from "./quiz-page";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState<"home" | "quiz" | "results">(
+    "home"
+  );
+
   const handleQuizStart = () => {
-    window.location.href = "/quiz/1";
+    setCurrentPage("quiz");
   };
 
   const handleViewResults = () => {
-    window.location.href = "/quiz/result";
+    setCurrentPage("results");
   };
+
+  if (currentPage === "quiz") {
+    return (
+      <div>
+        <QuizPage />
+      </div>
+    );
+  }
 
   return (
     <div
